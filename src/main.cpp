@@ -44,7 +44,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] const char **argv)
   /* } */
 
 
-  //Use the default logger (stdout, multi-threaded, colored)
+  // Use the default logger (stdout, multi-threaded, colored)
   spdlog::info("Hello, {}!", "World");
 
   sf::RenderWindow window(sf::VideoMode(1024, 768), "ImGui + SFML = <3");
@@ -67,9 +67,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] const char **argv)
     while (window.pollEvent(event)) {
       ImGui::SFML::ProcessEvent(event);
 
-      if (event.type == sf::Event::Closed) {
-        window.close();
-      }
+      if (event.type == sf::Event::Closed) { window.close(); }
     }
 
     ImGui::SFML::Update(window, deltaClock.restart());
@@ -77,8 +75,20 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] const char **argv)
     ImGui::Begin("The Plan");
 
     int index = 0;
-    for (const auto &step : { "The Plan", "Getting Started", "Finding Errors As Soon As Possible", "Handling Command Line Parameters", "Reading SFML Input States", "Managing Game State", "Making the Game Testable", "Making Game State Allocator Aware", "Add Logging to Game Engine", "Draw A Game Map", "Dialog Trees", "Porting from SFML to SDL" }) {
-      ImGui::Checkbox(fmt::format("{} : {}", index, step).c_str(), std::next(begin(states), index));
+    for (const auto &step : { "The Plan",
+           "Getting Started",
+           "Finding Errors As Soon As Possible",
+           "Handling Command Line Parameters",
+           "Reading SFML Input States",
+           "Managing Game State",
+           "Making the Game Testable",
+           "Making Game State Allocator Aware",
+           "Add Logging to Game Engine",
+           "Draw A Game Map",
+           "Dialog Trees",
+           "Porting from SFML to SDL" }) {
+      ImGui::Checkbox(fmt::format("{} : {}", index, step).c_str(),
+        std::next(begin(states), index));
       ++index;
     }
 
